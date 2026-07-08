@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "external-mcp-gateway"
+version = "0.1.0"
+description = "iSuccess external API exposed as read-only MCP tools via a FastMCP gateway."
+requires-python = ">=3.10"
+dependencies = [
+    "fastmcp>=3.2,<4",
+    "httpx>=0.27",
+    "python-dotenv>=1.0",
+]
+
+# Lets `uvx --from git+https://github.com/iSuccess-corp/external-mcp-gateway.git
+# isuccess-external-mcp` fetch, build, and run the local (stdio) gateway in one step.
+[project.scripts]
+isuccess-external-mcp = "mcp_gateway:main"
+
+# Single top-level module, not a package directory.
+[tool.setuptools]
+py-modules = ["mcp_gateway"]
